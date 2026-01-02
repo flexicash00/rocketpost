@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Staff Portal | Rocket Post</title>
+  
+  <!-- 1. Global CSS -->
+  <link rel="stylesheet" href="style.css" />
+  
+  <!-- 2. Firebase SDKs (Required for Cloud Data) -->
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+
+  <!-- 3. Global Logic -->
+  <script src="main.js"></script>
+</head>
+
+<body class="auth-hidden"> <!-- This class keeps the page hidden until PIN is entered -->
+
+<header class="header">
+  <div class="logo">
+    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#FFD700" stroke="#FFD700"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-main">ADMIN</span>
+      <span class="logo-sub">PORTAL</span>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <!-- Back to site link -->
+    <nav class="nav">
+      <a href="index.html">← Logout / Exit</a>
+    </nav>
+  </div>
+</header>
+
+<main class="container">
+  <!-- REGISTER CARD -->
+  <div class="admin-card">
+    <h2 data-i18n="admin_reg_title">Register New Shipment</h2>
+    <form id="adminForm" class="admin-form">
+      <div class="form-group">
+        <input type="text" id="senderName" placeholder="Sender Full Name" required />
+        <input type="text" id="senderAddress" placeholder="Origin City/Country" required />
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="receiverName" placeholder="Receiver Full Name" required />
+        <input type="text" id="receiverAddress" placeholder="Destination Address" required />
+      </div>
+
+      <div class="form-group">
+        <input type="text" id="product" placeholder="Item Description (e.g. Laptop)" required />
+        <!-- ADDED LOWERCASE VALUES HERE -->
+        <select id="status">
+          <option value="registered">Registered</option>
+          <option value="transit">In Transit</option>
+          <option value="hold">On Hold</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Ship Date:</label>
+        <input type="date" id="shipDate" required />
+      </div>
+
+      <div class="hold-section">
+        <label>Hold Logic (Optional)</label>
+        <input type="number" id="holdDay" placeholder="Trigger Hold on Day X" />
+        <input type="text" id="scheduledHoldReason" placeholder="Hold Reason (e.g. Custom Clearance)" />
+      </div>
+
+      <button type="submit" id="generateBtn">Create Shipment & Generate ID</button>
+    </form>
+
+    <div id="adminResult" class="result-alert"></div>
+  </div>
+
+  <!-- UPDATE CARD -->
+  <div class="admin-card" style="margin-top: 30px;">
+    <h2>Update Existing Shipment</h2>
+    <div class="admin-form">
+        <div class="form-group">
+            <input type="text" id="updateSearch" placeholder="Enter Tracking ID to Edit" />
+            <button type="button" id="btnFind" style="width: auto; background: #555;">Find Package</button>
+        </div>
+
+        <!-- This part stays hidden until 'Find Package' is clicked -->
+        <div id="updateFields" style="display: none; border-top: 1px solid #eee; padding-top: 20px;">
+            <div class="form-group">
+                <select id="updateStatus">
+                    <option value="registered">Registered</option>
+                    <option value="transit">In Transit</option>
+                    <option value="hold">On Hold</option>
+                    <option value="out">Out for Delivery</option>
+                    <option value="delivered">Delivered</option>
+                </select>
+                <input type="text" id="updateLocation" placeholder="Update Current Location" />
+            </div>
+            <div class="form-group">
+                <input type="text" id="updateMsg" placeholder="Custom Update Message (e.g. Package arrived at London Hub)" />
+            </div>
+            <button type="button" id="btnUpdateSave" style="background: var(--success);">Save Updates</button>
+        </div>
+    </div>
+</div>
+</main>
+
+<!-- 1. Firebase Core (Compat version) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<!-- 2. Firebase Database (Compat version) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<!-- 3. Your Main JS file -->
+<script src="main.js"></script>
+
+</body>
+</html>

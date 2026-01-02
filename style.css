@@ -1,0 +1,392 @@
+:root {
+  --primary: #002d72; /* Deep Navy */
+  --accent: #ffd700;  /* Rocket Gold */
+  --success: #28a745;
+  --bg: #f8f9fa;
+  --text: #333;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  margin: 0;
+}
+
+/* Professional Header */
+.header {
+  background: var(--primary);
+  padding: 1rem 5%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo { display: flex; align-items: center; gap: 10px; }
+.logo-icon { width: 40px; height: 40px; }
+.logo-main { font-weight: 700; font-size: 1.5rem; letter-spacing: -1px; }
+.logo-sub { font-size: 0.7rem; display: block; color: var(--accent); }
+
+.nav a { color: white; text-decoration: none; margin-left: 20px; font-weight: 600; }
+
+/* Tracking Box */
+.container { max-width: 900px; margin: 40px auto; padding: 20px; }
+.hero-section { text-align: center; margin-bottom: 40px; }
+
+.track-box {
+  display: flex;
+  background: white;
+  padding: 10px;
+  border-radius: 50px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+  margin: 20px auto;
+  max-width: 600px;
+}
+
+.track-box input {
+  flex: 1;
+  border: none;
+  padding: 15px 25px;
+  font-size: 1rem;
+  outline: none;
+  border-radius: 50px;
+}
+
+.track-box button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 50px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+/* Result Card */
+.result-card {
+  background: white;
+  border-radius: 12px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  display: none;
+}
+
+.status-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 25px;
+}
+
+/* Progress Bar */
+.progress-container { margin: 40px 0; }
+.progress-track {
+  height: 8px;
+  background: #eee;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+.progress-fill {
+  height: 100%;
+  width: 0%;
+  background: var(--success);
+  transition: width 1s ease;
+}
+.progress-steps {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+.step { font-size: 0.8rem; color: #ccc; font-weight: 600; }
+.step.active { color: var(--success); }
+.step.on-hold { color: #e67e22; }
+
+/* Grid Details */
+.details-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.detail-item label { display: block; font-size: 0.75rem; color: #888; text-transform: uppercase; }
+.detail-item p { font-weight: 600; margin-top: 5px; }
+.full-width { grid-column: span 2; border-top: 1px solid #eee; padding-top: 15px; }
+.update-msg { color: var(--primary); font-style: italic; }
+
+/* Admin Styles */
+.admin-card { background: white; padding: 40px; border-radius: 12px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+.admin-form .form-group { display: flex; gap: 15px; margin-bottom: 15px; }
+.admin-form input, .admin-form select { flex: 1; padding: 12px; border: 1px solid #ddd; border-radius: 6px; }
+.hold-section { background: #fff8e1; padding: 15px; border-radius: 6px; margin: 15px 0; }
+.result-alert { background: #d4edda; color: #155724; padding: 15px; border-radius: 6px; margin-top: 20px; display: none; }
+
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.lang-dropdown {
+  background: rgba(255,255,255,0.1);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.3);
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  outline: none;
+  font-size: 0.85rem;
+}
+
+.lang-dropdown option {
+  background: var(--primary);
+  color: white;
+}
+
+/* Fix for result display */
+#resultContainer {
+    display: none; /* JS will show this when tracking found */
+}
+
+/* --- CONTACT PAGE LAYOUT --- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr; /* Side-by-side on Desktop */
+  gap: 30px;
+  margin-top: 40px;
+  align-items: start;
+}
+
+.contact-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  box-sizing: border-box; /* Keeps everything inside on mobile */
+}
+
+.info-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.info-box {
+  background: var(--primary);
+  color: white;
+  padding: 30px;
+  border-radius: 12px;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.info-box h3 {
+  margin-bottom: 25px;
+  color: var(--accent); /* Rocket Gold */
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.info-item {
+  margin-bottom: 25px;
+}
+
+.info-item strong {
+  display: block;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--accent);
+  margin-bottom: 8px;
+  opacity: 0.9;
+}
+
+.info-item p {
+  font-size: 1.05rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+/* --- CONTACT FORM POLISH --- */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.contact-form input, 
+.contact-form textarea {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1.5px solid #eee;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: inherit;
+  background: #fdfdfd;
+  box-sizing: border-box; /* PREVENTS OVERFLOW ON PHONE */
+  transition: border-color 0.3s ease;
+}
+
+.contact-form input:focus, 
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  background: #fff;
+}
+
+.contact-form textarea {
+  min-height: 160px;
+  resize: vertical;
+}
+
+/* --- MOBILE RESPONSIVENESS FIX --- */
+@media (max-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr; /* STACK FORM ON TOP OF INFO BOX */
+    gap: 20px;
+    margin-top: 20px;
+  }
+
+  .container {
+    padding: 15px;
+    margin-top: 20px;
+  }
+
+  .contact-card, .info-box {
+    padding: 25px 20px; /* Comfortable padding for mobile */
+  }
+
+  .hero-section h1 {
+    font-size: 1.75rem;
+    margin-bottom: 10px;
+  }
+}
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: 0.3s;
+}
+
+.btn-primary:hover {
+  background: #0040a1;
+  transform: translateY(-2px);
+}
+
+/* Mobile Responsive */
+/* --- HAMBURGER (DESKTOP) --- */
+.hamburger {
+  display: none; /* Hidden on computer */
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  z-index: 2000; /* Higher than everything else */
+}
+
+.hamburger span {
+  width: 30px;
+  height: 3px;
+  background: #ffffff; /* FORCE WHITE COLOR */
+  border-radius: 10px;
+  transition: all 0.3s linear;
+  position: relative;
+  display: block;
+}
+
+/* --- MOBILE VIEW (768px and down) --- */
+@media (max-width: 768px) {
+  .hamburger {
+    display: flex; /* SHOW ON MOBILE */
+    margin-left: 15px;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+  }
+
+  .nav {
+    position: fixed;
+    top: 0;
+    right: -100%; /* Hidden */
+    width: 240px; 
+    height: 100vh;
+    background: var(--primary);
+    display: flex !important;
+    flex-direction: column !important; 
+    justify-content: flex-start; 
+    align-items: flex-start;
+    padding-top: 100px; 
+    padding-left: 30px;
+    transition: 0.4s ease-in-out;
+    box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+    z-index: 1500; /* Below hamburger, above content */
+  }
+
+  .nav.active {
+    right: 0; /* Slide in */
+  }
+
+  .nav a {
+    color: white;
+    font-size: 1.2rem;
+    margin: 15px 0;
+    text-decoration: none;
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    padding-bottom: 10px;
+  }
+}
+
+/* Animation to turn hamburger into X */
+.hamburger.is-active span:nth-child(1) {
+  transform: translateY(9px) rotate(45deg);
+}
+
+.hamburger.is-active span:nth-child(2) {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.hamburger.is-active span:nth-child(3) {
+  transform: translateY(-9px) rotate(-45deg);
+}
+
+/* --- ON HOLD PROGRESS STYLING --- */
+.step.on-hold-active span {
+  color: #e67e22 !important;
+  font-weight: bold;
+}
+
+/* Make progress bar pulse when on hold */
+.progress-fill.hold-pulse {
+  background: #e67e22;
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}
+
+/* --- SECURITY: PROTECTED PAGE SYSTEM --- */
+.auth-hidden {
+    display: none !important;
+}
+
+

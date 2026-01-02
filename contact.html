@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Rocket Post</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- HEADER (Matches Index & Admin) -->
+ <header class="header">
+  <div class="logo">
+    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#FFD700" stroke="#FFD700"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-main">ROCKET</span>
+      <span class="logo-sub">POST LOGISTICS</span>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <select id="langSelect" class="lang-dropdown">
+      <option value="en">English 🇺🇸</option>
+      <option value="de">Deutsch 🇩🇪</option>
+      <option value="fr">Français 🇫🇷</option>
+    </select>
+    
+    <!-- The Navigation -->
+    <nav class="nav" id="navMenu">
+      <a href="index.html" data-i18n="nav_track">Track</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- The Hamburger Icon -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</header>
+
+  <main class="container">
+    <section class="hero-section">
+      <h1 data-i18n="contact_title">Contact Us</h1>
+      <p data-i18n="contact_sub">Need help with your shipment? Reach out to our global support team.</p>
+    </section>
+
+    <div class="contact-grid">
+      <!-- Contact Form Card -->
+      <div class="contact-card">
+        <form id="contactForm" class="contact-form">
+          <div class="form-group">
+            <input type="text" id="contactName" data-i18n="placeholder_name" placeholder="Your Name" required />
+          </div>
+          <div class="form-group">
+            <input type="email" id="contactEmail" data-i18n="placeholder_email" placeholder="Your Email" required />
+          </div>
+          <div class="form-group">
+            <textarea id="contactMessage" data-i18n="placeholder_msg" placeholder="How can we help you?" required></textarea>
+          </div>
+          <button type="submit" class="btn-primary" data-i18n="btn_send">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Contact Info Card -->
+      <div class="info-sidebar">
+        <div class="info-box">
+          <h3 data-i18n="info_title">Contact Information</h3>
+          <div class="info-item">
+            <strong>Email:</strong>
+            <p>support@rocketpost.com</p>
+          </div>
+          <div class="info-item">
+            <strong>Phone:</strong>
+            <p>+1 918 886 0822</p>
+          </div>
+          <div class="info-item">
+            <strong data-i18n="info_hours">Office Hours:</strong>
+            <p>Mon - Sat: 08:00 - 18:00</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Rocket Post Logistics. All rights reserved.</p>
+  </footer>
+
+<!-- 1. Firebase Core (Compat version) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<!-- 2. Firebase Database (Compat version) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<!-- 3. Your Main JS file -->
+<script src="main.js"></script>
+
+</body>
+</html>

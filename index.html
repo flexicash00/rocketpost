@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ROCKET Post | Track Your Package</title>
+  <link rel="stylesheet" href="style.css" />
+  <!-- Google Fonts for professional look -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+ <!-- HEADER -->
+ <header class="header">
+  <div class="logo">
+    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z" fill="#FFD700" stroke="#FFD700"/>
+    </svg>
+    <div class="logo-text">
+      <span class="logo-main">ROCKET</span>
+      <span class="logo-sub">POST LOGISTICS</span>
+    </div>
+  </div>
+
+  <div class="header-right">
+    <select id="langSelect" class="lang-dropdown">
+      <option value="en">English 🇺🇸</option>
+      <option value="de">Deutsch 🇩🇪</option>
+      <option value="fr">Français 🇫🇷</option>
+    </select>
+    
+    <!-- The Navigation -->
+    <nav class="nav" id="navMenu">
+      <a href="index.html" data-i18n="nav_track">Track</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- The Hamburger Icon -->
+    <div class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</header>
+
+  <!-- MAIN SECTION -->
+  <main class="container">
+    <section class="hero-section">
+      <h1 data-i18n="track_title">Track Your Shipment</h1>
+      <p data-i18n="track_sub">Real-time updates for your global deliveries.</p>
+      
+      <div class="track-box">
+        <!-- Placeholder is handled by JS but we keep a default -->
+        <input type="text" id="trackInput" placeholder="Enter Tracking Number..." />
+        <button id="trackBtn" data-i18n="btn_track">Track Now</button>
+      </div>
+    </section>
+
+    <!-- This card stays hidden until a tracking number is entered -->
+    <div id="resultContainer" class="result-card">
+      <div class="status-header">
+        <h2 id="resStatus">---</h2>
+        <span id="resTrackingID">#000000</span>
+      </div>
+
+      <!-- Professional Progress Bar -->
+      <div class="progress-container">
+        <div class="progress-track">
+          <div id="progressFill" class="progress-fill"></div>
+        </div>
+        <div class="progress-steps">
+          <!-- IDs here match the JS lowercase status logic -->
+          <div class="step" id="step-registered">
+            <span data-i18n="status_registered">Registered</span>
+          </div>
+          <div class="step" id="step-transit">
+            <span data-i18n="status_transit">In Transit</span>
+          </div>
+          <div class="step" id="step-out">
+            <span data-i18n="status_out">Out for Delivery</span>
+          </div>
+          <div class="step" id="step-delivered">
+            <span data-i18n="status_delivered">Delivered</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Info Grid -->
+      <div class="details-grid">
+        <div class="detail-item">
+          <label data-i18n="label_sender">Sender</label>
+          <p id="resSender">---</p>
+        </div>
+        <div class="detail-item">
+          <label data-i18n="label_receiver">Receiver</label>
+          <p id="resReceiver">---</p>
+        </div>
+
+<div class="detail-item">
+        <label>Expected Delivery (ETA)</label>
+        <p id="resETA" style="color: #002d72; font-weight: bold;">---</p>
+    </div>
+
+        <div class="detail-item">
+          <label data-i18n="label_dest">Destination</label>
+          <p id="resAddress">---</p>
+        </div>
+        <div class="detail-item">
+          <label data-i18n="label_loc">Current Location</label>
+          <p id="resLocation">---</p>
+        </div>
+        <div class="detail-item full-width">
+          <label data-i18n="label_update">Latest Update</label>
+          <p id="resMessage" class="update-msg">---</p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>&copy; 2026 Rocket Post Logistics. All rights reserved.</p>
+    <p>Support: <a href="mailto:support@rocketpost.com">support@rocketpost.com</a></p>
+  </footer>
+
+ <!-- 1. Firebase Core (Compat version) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+<!-- 2. Firebase Database (Compat version) -->
+<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+<!-- 3. Your Main JS file -->
+<script src="main.js"></script>
+
+
+</body>
+</html>
