@@ -8,15 +8,15 @@
   <!-- 1. Global CSS -->
   <link rel="stylesheet" href="style.css" />
   
-  <!-- 2. Firebase SDKs (Required for Cloud Data) -->
+  <!-- 2. Firebase SDKs -->
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
 
-  <!-- 3. Global Logic -->
+  <!-- 3. Global Logic (Security runs here first) -->
   <script src="main.js"></script>
 </head>
 
-<body class="auth-hidden"> <!-- This class keeps the page hidden until PIN is entered -->
+<body class="auth-hidden"> 
 
 <header class="header">
   <div class="logo">
@@ -30,7 +30,6 @@
   </div>
 
   <div class="header-right">
-    <!-- Back to site link -->
     <nav class="nav">
       <a href="index.html">← Logout / Exit</a>
     </nav>
@@ -46,36 +45,29 @@
         <input type="text" id="senderName" placeholder="Sender Full Name" required />
         <input type="text" id="senderAddress" placeholder="Origin City/Country" required />
       </div>
-
       <div class="form-group">
         <input type="text" id="receiverName" placeholder="Receiver Full Name" required />
         <input type="text" id="receiverAddress" placeholder="Destination Address" required />
       </div>
-
       <div class="form-group">
-        <input type="text" id="product" placeholder="Item Description (e.g. Laptop)" required />
-        <!-- ADDED LOWERCASE VALUES HERE -->
+        <input type="text" id="product" placeholder="Item Description" required />
         <select id="status">
           <option value="registered">Registered</option>
           <option value="transit">In Transit</option>
           <option value="hold">On Hold</option>
         </select>
       </div>
-
       <div class="form-group">
         <label>Ship Date:</label>
         <input type="date" id="shipDate" required />
       </div>
-
       <div class="hold-section">
         <label>Hold Logic (Optional)</label>
         <input type="number" id="holdDay" placeholder="Trigger Hold on Day X" />
-        <input type="text" id="scheduledHoldReason" placeholder="Hold Reason (e.g. Custom Clearance)" />
+        <input type="text" id="scheduledHoldReason" placeholder="Hold Reason" />
       </div>
-
       <button type="submit" id="generateBtn">Create Shipment & Generate ID</button>
     </form>
-
     <div id="adminResult" class="result-alert"></div>
   </div>
 
@@ -87,8 +79,6 @@
             <input type="text" id="updateSearch" placeholder="Enter Tracking ID to Edit" />
             <button type="button" id="btnFind" style="width: auto; background: #555;">Find Package</button>
         </div>
-
-        <!-- This part stays hidden until 'Find Package' is clicked -->
         <div id="updateFields" style="display: none; border-top: 1px solid #eee; padding-top: 20px;">
             <div class="form-group">
                 <select id="updateStatus">
@@ -101,7 +91,7 @@
                 <input type="text" id="updateLocation" placeholder="Update Current Location" />
             </div>
             <div class="form-group">
-                <input type="text" id="updateMsg" placeholder="Custom Update Message (e.g. Package arrived at London Hub)" />
+                <input type="text" id="updateMsg" placeholder="Custom Update Message" />
             </div>
             <button type="button" id="btnUpdateSave" style="background: var(--success);">Save Updates</button>
         </div>
@@ -109,12 +99,7 @@
 </div>
 </main>
 
-<!-- 1. Firebase Core (Compat version) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-<!-- 2. Firebase Database (Compat version) -->
-<script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
-<!-- 3. Your Main JS file -->
-<script src="main.js"></script>
+<!-- I REMOVED THE DUPLICATE SCRIPTS FROM HERE -->
 
 </body>
 </html>
