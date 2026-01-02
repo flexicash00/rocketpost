@@ -1,13 +1,21 @@
-// --- 1. GLOBAL STAFF SECURITY (RUNS IMMEDIATELY) ---
+// --- 1. GLOBAL STAFF SECURITY (REBUILT FOR LIVE DOMAINS) ---
 (function() {
-    const STAFF_PIN = "7712"; // Boss, change this to your secret code!
-    const isProtectedPage = window.location.pathname.includes("admin.html");
+    const STAFF_PIN = "1234"; // Boss, your code
+    
+    // This check is now much more aggressive
+    const url = window.location.href.toLowerCase();
+    const isProtected = url.includes("admin");
 
-    if (isProtectedPage) {
+    console.log("Current URL:", url);
+    console.log("Is Protected Page:", isProtected);
+
+    if (isProtected) {
         if (sessionStorage.getItem('staff_auth') !== 'true') {
             let entry = prompt("ROCKET POST | Internal Staff Access\nPlease enter Security PIN:");
+            
             if (entry === STAFF_PIN) {
                 sessionStorage.setItem('staff_auth', 'true');
+                console.log("Auth Success!");
             } else {
                 alert("Access Denied.");
                 window.location.href = "index.html";
@@ -15,6 +23,16 @@
         }
     }
 })();
+
+document.addEventListener("DOMContentLoaded", () => {
+    
+    // --- SMARTER REVEAL LOGIC ---
+    const url = window.location.href.toLowerCase();
+    if (url.includes("admin") && sessionStorage.getItem('staff_auth') === 'true') {
+        console.log("Revealing Admin Panel...");
+        document.body.classList.remove("auth-hidden");
+        document.body.style.display = "block"; // Extra force
+    }
 
 // --- 2. FIREBASE CONFIGURATION (Your Specific Keys) ---
 const firebaseConfig = {
@@ -280,4 +298,5 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let i = 0; i <= currentIndex; i++) document.getElementById(`step-${steps[i]}`).classList.add("active");
         }
     }
+
 });
