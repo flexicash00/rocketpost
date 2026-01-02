@@ -1,40 +1,28 @@
-// --- 1. GLOBAL STAFF SECURITY (REBUILT FOR LIVE DOMAINS) ---
+// --- 1. GLOBAL STAFF SECURITY (RUNS IMMEDIATELY) ---
 (function() {
-    const STAFF_PIN = "1234"; // Boss, your code
+    const STAFF_PIN = "1234"; // Boss, your secret code
     
-    // This check is now much more aggressive
-    const url = window.location.href.toLowerCase();
-    const isProtected = url.includes("admin");
+    // This looks at the WHOLE URL to find the word "admin"
+    // This handles rocketpost.online/admin, rocketpost.online/admin.html, etc.
+    const currentUrl = window.location.href.toLowerCase();
+    const isProtectedPage = currentUrl.includes("admin");
 
-    console.log("Current URL:", url);
-    console.log("Is Protected Page:", isProtected);
-
-    if (isProtected) {
+    if (isProtectedPage) {
+        // If they haven't logged in this session, show the prompt
         if (sessionStorage.getItem('staff_auth') !== 'true') {
             let entry = prompt("ROCKET POST | Internal Staff Access\nPlease enter Security PIN:");
             
             if (entry === STAFF_PIN) {
                 sessionStorage.setItem('staff_auth', 'true');
-                console.log("Auth Success!");
             } else {
                 alert("Access Denied.");
-                window.location.href = "index.html";
+                window.location.href = "index.html"; // Send them away
             }
         }
     }
 })();
 
-document.addEventListener("DOMContentLoaded", () => {
-    
-    // --- SMARTER REVEAL LOGIC ---
-    const url = window.location.href.toLowerCase();
-    if (url.includes("admin") && sessionStorage.getItem('staff_auth') === 'true') {
-        console.log("Revealing Admin Panel...");
-        document.body.classList.remove("auth-hidden");
-        document.body.style.display = "block"; // Extra force
-    }
-
-// --- 2. FIREBASE CONFIGURATION (Your Specific Keys) ---
+// --- 2. FIREBASE CONFIGURATION (ONLY DEFINED ONCE) ---
 const firebaseConfig = {
   apiKey: "AIzaSyDTiUE0uXYFL7EnpXuwz983_sgyDkABxEc",
   authDomain: "rocketpost-bfedf.firebaseapp.com",
@@ -51,9 +39,12 @@ const db = firebase.database();
 
 document.addEventListener("DOMContentLoaded", () => {
     
-    // --- 3. THE ADMIN REVEAL ---
-    if (window.location.pathname.includes("admin.html") && sessionStorage.getItem('staff_auth') === 'true') {
+    // --- 3. THE ADMIN REVEAL (This pulls the curtain back) ---
+    const currentUrl = window.location.href.toLowerCase();
+    if (currentUrl.includes("admin") && sessionStorage.getItem('staff_auth') === 'true') {
+        // If authorized, we remove the class that hides the page
         document.body.classList.remove("auth-hidden");
+        console.log("Admin Panel Authorized & Revealed.");
     }
 
     // --- 4. MOBILE HAMBURGER TOGGLE ---
@@ -155,7 +146,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     changeLanguage(currentLang);
 
-    // --- 7. MOVEMENT SIMULATION & STATIC ETA (Timezone Fix) ---
+    // --- 7. MOVEMENT SIMULATION (Timezone & Path) ---
     function simulateMovement(shipment) {
         const shipDate = new Date(shipment.shipDate + 'T00:00:00');
         const today = new Date();
@@ -219,7 +210,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
     }
 
-    // --- 9. ADMIN: SAVE & UPDATE (FIREBASE) ---
+    // --- 9. ADMIN FUNCTIONS (SAVE & UPDATE) ---
     const adminForm = document.getElementById("adminForm");
     if (adminForm) {
         adminForm.addEventListener("submit", (e) => {
@@ -298,5 +289,4 @@ document.addEventListener("DOMContentLoaded", () => {
             for (let i = 0; i <= currentIndex; i++) document.getElementById(`step-${steps[i]}`).classList.add("active");
         }
     }
-
 });
